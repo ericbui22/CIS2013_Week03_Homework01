@@ -1,40 +1,42 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime> 
+#include <algorithm>
 
 using namespace std;
+int choice = 0;
 
-int PrintData(int pTotal, int dCard) {
-	std::cout << "\nYour total is" << pTotal;
-	std::cout << "\Dealer has a " << dcard << "showing.\n";
+
+void PrintData(int pTotal, int dCard) {
+	cout << "\nYour total is " << pTotal;
+	cout << "\nDealer has a  " << dCard << " showing.\n";
 
 }
 int getCard() {
-	return std::rand() % 11 + 2;
+	return rand() % 10 + 2;
 
 }
 
-void turn(int& ptotal, char choice, bool& stay) {
+void turn(int ptotal, char choice, bool stay) {
 	if (choice == 'H' || choice == 'h') {
-		if ((pTotal += getCard()) >= 21) {
-			std::cout << "Your total is" << ptotal;
+		if ((ptotal += getCard()) >= 21) {
+			cout << "Your total is " << ptotal;
 			stay + true;
 		}
-
 		return;
 	}
-
 	stay = true;
 }
 int main() {
 	bool stay;
-	char choice = NULL;
+	char (NULL) ; 
+	
 
 	while (true) {
-		std::cout << "============================";
+		cout << "============================";
 		stay = false;
 
-		std::srand(std::time(0));
+		srand(time(0));
 		int dCard = getCard();
 		int pTotal = getCard() + getCard();
 		int dTotal = dCard + getCard();
@@ -42,15 +44,15 @@ int main() {
 
 		while (!stay) {
 
-			printData(pTotal, dCard);
-			std::cout << "[H]it or [S]tay?\n ";
-			std::cin >> choice;
+			PrintData(pTotal, dCard);
+			cout << "[H]it or [S]tay?\n ";
+			cin >> choice;
 			turn(pTotal, choice, stay);
 
 		}
 
 		stay = false;
-		std::cout << "\nIt is now the dealer's turn\n";
+		cout << "\nIt is now the dealer's turn\n ";
 
 		while (dTotal <= 21 && !stay) {
 			if (dTotal >= 17)
@@ -58,15 +60,16 @@ int main() {
 			else
 				dTotal += getCard();
 		}
-		
-		std::cout << "\n\nThe player has " << pTotal
+
+		cout << "\n\nThe player has " << pTotal
 			<< "\nThe dealer has " << dTotal << "\n\n";
 
-		if ((std::abs(21 - pTotal)) < (std::abs(21 - dTotal))) {
-			std::cout << "The player wins!\n";
+		if (((21 - pTotal)) < ((21 - dTotal))) {
+			cout << "The player wins!\n";
 		}
 		else {
-			std::cout << "The Dealer wins!\n";
+			cout << "The Dealer wins!\n";
 		}
 	}
+	return 0;
 }
